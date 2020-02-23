@@ -1,18 +1,25 @@
-## SNAKELESS
+## SNAKE App
 
-**_Snake app in Vanilla Javascript and HTML + CSS_**
+**_SNAKE app in Vanilla Javascript and HTML + CSS_**
 
-![SNAKE](./img/example.jpg)
+Demo [here](http://mastermind-snake.herokuapp.com/)
+
+![SNAKE app](./img/example.jpg)
 
 ### Summary
 
-Third app done in my roadmap to become a fullstack web developper.
-This is a simple calculator with basic operators, memory and reset functions.
+Fourth app done in my roadmap to become a fullstack web developper.
+This is snake app with instructions and customization.
 
-As you add operators in the operations zone, the result will show automatically. This calculation method doesn't use **eval()** function (which is not recommended). It works but i think the logic can be greatly improved.
+You can tune the difficulty level and compete to beat the record.
 
-If you click on **=** button, you also get the result but this time the underlying method used is **eval()**.
+The game engine in coded in Vanilla javascript. Front end and styling are done with **Bootstrap** and **CSS grid** 
 
-Also ,i've always been very bad in front end layout. This time i learned the fundamentals of **CSS Grid** and now i'm more confident in building more organized and beautiful layouts.
+Building a simple game always looked daunting for me. But as i learned the basics of canvas, coding the game was finally smooth.
+This was a very good exercise for me to work on writing a concise code by using functions. 
 
-:)
+### Author
+
+**_Gilchrist TOSSOU_** - Full stack web developer/ data engineer [LinkedIn](https://linkedin.com/in/gilchrist-tossou-a9663743/)
+
+
