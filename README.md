@@ -4,7 +4,7 @@
 
 Demo [here](http://mastermind-snake.herokuapp.com/)
 
-![SNAKE app](./img/example.jpg)
+![SNAKE app](./img/example.PNG)
 
 ### Summary
 
