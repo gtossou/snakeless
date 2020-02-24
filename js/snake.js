@@ -20,6 +20,8 @@ window.onload = function () {
     setInterval(function () {
         move(snake, lastDirection);
         eatFood();
+        death();
+
     }, 1000 / 10);
 };
 
@@ -28,17 +30,48 @@ document.addEventListener('keydown', (event) => {
     updateLastDir(keyName);
 })
 
+function death(){
+    // how to do that better ??????????????
+    head = snake[0];
+
+    for (let i = snake.length - 1; i >= 1; i--) {
+        // console.log(snake[i]);
+        if (snake[i].x === head.x && snake[i].y === head.y){
+            snake[i].y = snake[i - 1].y;
+            alert("STOP");
+            break;
+        }
+        else if([canvas.clientWidth,-10].includes(head.x) || [canvas.height,-10].includes(head.y)){
+            alert("STOP");
+            break;
+        }     
+    }
+}
+
 // Handle when snake eat food
 function eatFood() {
     lastBlock = snake[snake.length - 1];
     if (food.x == snake[0].x && food.y == snake[0].y) {
+        //pushes new block to tail
         snake.push({ x: lastBlock.x, y: lastBlock.y, color: "azure" })
         let food = generateFood(canvas.clientWidth, canvas.height);
     }
+
     showFood(food);
 }
 
-// Generate food coordinaetes
+function eatFood() {
+    lastBlock = snake[snake.length - 1];
+    if (food.x == snake[0].x && food.y == snake[0].y) {
+        //pushes new block to tail
+        snake.push({ x: lastBlock.x, y: lastBlock.y, color: "azure" })
+        let food = generateFood(canvas.clientWidth, canvas.height);
+    }
+    
+    showFood(food);
+}
+
+// Generate food coordinates
 function generateFood(max_x, max_y) {
     max_x = Math.floor(max_x);
     max_y = Math.floor(max_y);
@@ -105,7 +138,7 @@ function updateSnakeBlocks(snake, lastDir) {
 
 }
 
-// Handle the snake movement
+// Handle the snake movement and redraw the snake
 function move(snake, lastDir) {
     drawBackground();
     updateSnakeBlocks(snake, lastDir)
