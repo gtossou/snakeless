@@ -4,7 +4,10 @@ let ballX = 50;
 let ballSpeedX = 10;
 var lastDirection = "None";
 var food;
-var directions = ["ArrowRight", "ArrowDown", "ArrowLeft", "ArrowUp",]
+var level = 100;
+var levelSelect = document.querySelector("#level-select");
+var score = document.querySelector("#score");
+var directions = ["ArrowRight", "ArrowDown", "ArrowLeft", "ArrowUp"]
 var snake = [
     { x: 150, y: 10, color: "red" },
     { x: 140, y: 10, color: "azure" },
@@ -17,18 +20,39 @@ window.onload = function () {
     canvasContext = canvas.getContext("2d");
     // setInterval(callBoth,1000/30);
     food = generateFood(canvas.clientWidth, canvas.height);
-    setInterval(function () {
+    var interval = setInterval(function () {
         move(snake, lastDirection);
         eatFood();
         death();
 
-    }, 1000 / 10);
+    }, level);
 };
 
 document.addEventListener('keydown', (event) => {
     const keyName = event.key;
     updateLastDir(keyName);
 })
+
+levelSelect.addEventListener('change', (event) => {
+    let levelSelected = document.querySelector("#level-select").value;
+    updateDifficulty(levelSelected);
+})
+
+function updateDifficulty(levelSelected){
+    if (levelSelected==="Easy"){
+        level=100
+    }
+    if (levelSelected==="Medium"){
+        level=75
+    }
+    if (levelSelected==="Hard"){
+        level=50
+    }
+    if (levelSelected==="Insane"){
+        level=1/10000
+    }
+}
+
 
 function death(){
     // how to do that better ??????????????
@@ -38,12 +62,14 @@ function death(){
         // console.log(snake[i]);
         if (snake[i].x === head.x && snake[i].y === head.y){
             snake[i].y = snake[i - 1].y;
-            alert("STOP");
-            break;
+            alert("GAME OVER");
+            document.location.reload();
+            clearInterval(interval);
         }
         else if([canvas.clientWidth,-10].includes(head.x) || [canvas.height,-10].includes(head.y)){
-            alert("STOP");
-            break;
+            alert("GAME OVER");
+            document.location.reload();
+            clearInterval(interval);
         }     
     }
 }
@@ -55,20 +81,15 @@ function eatFood() {
         //pushes new block to tail
         snake.push({ x: lastBlock.x, y: lastBlock.y, color: "azure" })
         let food = generateFood(canvas.clientWidth, canvas.height);
+        addPoint();
     }
 
     showFood(food);
+    
 }
 
-function eatFood() {
-    lastBlock = snake[snake.length - 1];
-    if (food.x == snake[0].x && food.y == snake[0].y) {
-        //pushes new block to tail
-        snake.push({ x: lastBlock.x, y: lastBlock.y, color: "azure" })
-        let food = generateFood(canvas.clientWidth, canvas.height);
-    }
-    
-    showFood(food);
+function addPoint() {
+    score.innerHTML = parseInt(score.innerHTML)+10; 
 }
 
 // Generate food coordinates
