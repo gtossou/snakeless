@@ -8,6 +8,7 @@ var level = 100;
 var levelSelect = document.querySelector("#level-select");
 var score = document.querySelector("#score");
 var directions = ["ArrowRight", "ArrowDown", "ArrowLeft", "ArrowUp"]
+var interval;
 var snake = [
     { x: 150, y: 10, color: "red" },
     { x: 140, y: 10, color: "azure" },
@@ -18,14 +19,15 @@ var snake = [
 window.onload = function () {
     canvas = document.querySelector("#gameCanvas");
     canvasContext = canvas.getContext("2d");
-    // setInterval(callBoth,1000/30);
     food = generateFood(canvas.clientWidth, canvas.height);
     var interval = setInterval(function () {
         move(snake, lastDirection);
         eatFood();
         death();
 
-    }, level);
+    }, 
+    //The difficulty level 
+    level);
 };
 
 document.addEventListener('keydown', (event) => {
@@ -38,7 +40,7 @@ levelSelect.addEventListener('change', (event) => {
     updateDifficulty(levelSelected);
 })
 
-function updateDifficulty(levelSelected){
+function updateDifficulty(levelSelected,interval){
     if (levelSelected==="Easy"){
         level=100
     }
@@ -51,6 +53,7 @@ function updateDifficulty(levelSelected){
     if (levelSelected==="Insane"){
         level=1/10000
     }
+    
 }
 
 
@@ -65,11 +68,13 @@ function death(){
             alert("GAME OVER");
             document.location.reload();
             clearInterval(interval);
+            break;
         }
         else if([canvas.clientWidth,-10].includes(head.x) || [canvas.height,-10].includes(head.y)){
             alert("GAME OVER");
             document.location.reload();
             clearInterval(interval);
+            break;
         }     
     }
 }
