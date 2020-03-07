@@ -5,10 +5,8 @@ let ballSpeedX = 10;
 var lastDirection = "None";
 var food;
 var level = 100;
-var levelSelect = document.querySelector("#level-select");
 var score = document.querySelector("#score");
 var directions = ["ArrowRight", "ArrowDown", "ArrowLeft", "ArrowUp"]
-var interval;
 var snake = [
     { x: 150, y: 10, color: "red" },
     { x: 140, y: 10, color: "azure" },
@@ -19,15 +17,26 @@ var snake = [
 window.onload = function () {
     canvas = document.querySelector("#gameCanvas");
     canvasContext = canvas.getContext("2d");
+    canvas.focus()
     food = generateFood(canvas.clientWidth, canvas.height);
+
     var interval = setInterval(function () {
         move(snake, lastDirection);
         eatFood();
         death();
-
+        console.log(level);
+        
     }, 
     //The difficulty level 
     level);
+    document.addEventListener('keydown', (event) => {
+        const levelSelected = event.key;
+        if (["1","2","3","4"].includes(levelSelected)){
+            updateDifficulty(levelSelected,interval);
+        }
+        //updateDifficulty(levelSelected,interval);
+    });
+    
 };
 
 document.addEventListener('keydown', (event) => {
@@ -35,27 +44,33 @@ document.addEventListener('keydown', (event) => {
     updateLastDir(keyName);
 })
 
-levelSelect.addEventListener('change', (event) => {
-    let levelSelected = document.querySelector("#level-select").value;
-    updateDifficulty(levelSelected);
-})
-
 function updateDifficulty(levelSelected,interval){
-    if (levelSelected==="Easy"){
+    if (levelSelected==="1"){
         level=100
     }
-    if (levelSelected==="Medium"){
-        level=75
+    else if (levelSelected==="2"){
+        level=90
     }
-    if (levelSelected==="Hard"){
+    else if (levelSelected==="3"){
+        level=80
+    }
+    else if (levelSelected==="4"){
         level=50
     }
-    if (levelSelected==="Insane"){
-        level=1/10000
+    else{
+        level=100
     }
-    
-}
+    console.log(level);
 
+    clearInterval(interval);
+    interval = setInterval(function () {
+        move(snake, lastDirection);
+        eatFood();
+        death(); 
+    }, 
+    //The difficulty level 
+    level);
+}
 
 function death(){
     // how to do that better ??????????????
@@ -68,14 +83,16 @@ function death(){
             alert("GAME OVER");
             document.location.reload();
             clearInterval(interval);
-            break;
+            break; 
         }
         else if([canvas.clientWidth,-10].includes(head.x) || [canvas.height,-10].includes(head.y)){
             alert("GAME OVER");
             document.location.reload();
             clearInterval(interval);
-            break;
-        }     
+            break; 
+        }   
+       
+         
     }
 }
 

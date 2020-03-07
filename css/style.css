@@ -12,14 +12,13 @@
 .slogan{
 	display: grid;
 	border: 1px outset;
-	height: 60px;
+	height: 160px;
 }
 
 .game-container{
 	display: grid;
 	height: 300px;
 	grid-template-columns: 1fr 2fr 1fr;
-	border: 1px outset;
 }
 
 footer{
