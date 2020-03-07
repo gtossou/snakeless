@@ -25,18 +25,18 @@ window.onload = function () {
         eatFood();
         death();
         console.log(level);
-        
-    }, 
-    //The difficulty level 
-    level);
+
+    },
+        //The difficulty level 
+        level);
     document.addEventListener('keydown', (event) => {
         const levelSelected = event.key;
-        if (["1","2","3","4"].includes(levelSelected)){
-            updateDifficulty(levelSelected,interval);
+        if (["1", "2", "3", "4"].includes(levelSelected)) {
+            updateDifficulty(levelSelected, interval);
         }
         //updateDifficulty(levelSelected,interval);
     });
-    
+
 };
 
 document.addEventListener('keydown', (event) => {
@@ -44,21 +44,21 @@ document.addEventListener('keydown', (event) => {
     updateLastDir(keyName);
 })
 
-function updateDifficulty(levelSelected,interval){
-    if (levelSelected==="1"){
-        level=100
+function updateDifficulty(levelSelected, interval) {
+    if (levelSelected === "1") {
+        level = 100
     }
-    else if (levelSelected==="2"){
-        level=90
+    else if (levelSelected === "2") {
+        level = 90
     }
-    else if (levelSelected==="3"){
-        level=80
+    else if (levelSelected === "3") {
+        level = 80
     }
-    else if (levelSelected==="4"){
-        level=50
+    else if (levelSelected === "4") {
+        level = 50
     }
-    else{
-        level=100
+    else {
+        level = 100
     }
     console.log(level);
 
@@ -66,33 +66,33 @@ function updateDifficulty(levelSelected,interval){
     interval = setInterval(function () {
         move(snake, lastDirection);
         eatFood();
-        death(); 
-    }, 
-    //The difficulty level 
-    level);
+        death();
+    },
+        //The difficulty level 
+        level);
 }
 
-function death(){
+function death() {
     // how to do that better ??????????????
     head = snake[0];
 
     for (let i = snake.length - 1; i >= 1; i--) {
         // console.log(snake[i]);
-        if (snake[i].x === head.x && snake[i].y === head.y){
+        if (snake[i].x === head.x && snake[i].y === head.y) {
             snake[i].y = snake[i - 1].y;
             alert("GAME OVER");
             document.location.reload();
             clearInterval(interval);
-            break; 
+            break;
         }
-        else if([canvas.clientWidth,-10].includes(head.x) || [canvas.height,-10].includes(head.y)){
+        else if ([canvas.clientWidth, -10].includes(head.x) || [canvas.height, -10].includes(head.y)) {
             alert("GAME OVER");
             document.location.reload();
             clearInterval(interval);
-            break; 
-        }   
-       
-         
+            break;
+        }
+
+
     }
 }
 
@@ -107,11 +107,11 @@ function eatFood() {
     }
 
     showFood(food);
-    
+
 }
 
 function addPoint() {
-    score.innerHTML = parseInt(score.innerHTML)+10; 
+    score.innerHTML = parseInt(score.innerHTML) + 10;
 }
 
 // Generate food coordinates
@@ -145,7 +145,7 @@ function clearSnake(snake) {
 }
 
 // update the snake tail
-function updateSnakeTail(){
+function updateSnakeTail() {
     for (let i = snake.length - 1; i >= 1; i--) {
         // console.log(snake[i]);
         snake[i].x = snake[i - 1].x;
