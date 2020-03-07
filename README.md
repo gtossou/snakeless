@@ -9,14 +9,15 @@ Demo [here](http://mastermind-snake.herokuapp.com/)
 ### Summary
 
 Fourth app done in my roadmap to become a fullstack web developper.
-This is snake app with instructions and customization.
+It's the popular snake game. A game we almost all played younger and still today. 
+Here, you can tune the difficulty level from Easy to Insane  and compete to beat the record(coming soon).
 
-You can tune the difficulty level and compete to beat the record.
-
-The game engine in coded in Vanilla javascript. Front end and styling are done with **Bootstrap** and **CSS grid** 
+The game engine is coded in Vanilla javascript. Front end and styling are done with **Bootstrap** and **CSS grid** 
 
 Building a simple game always looked daunting for me. But as i learned the basics of canvas, coding the game was finally smooth.
-This was a very good exercise for me to work on writing a concise code by using functions. 
+This was a very good exercise for me to work on writing a concise code by using functions. I also used the debugger a lot to understand many bugs i encountered when building the app.
+
+Have fun playing the game !
 
 ### Author
 
