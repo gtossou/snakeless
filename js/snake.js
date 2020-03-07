@@ -15,7 +15,7 @@ var snake = [
 ]
 
 window.onload = function () {
-    canvas = document.querySelector("#gameCanvas");
+    canvas = document.querySelector("#game-canvas");
     canvasContext = canvas.getContext("2d");
     canvas.focus()
     food = generateFood(canvas.clientWidth, canvas.height);
